@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": 7,
+    "useDefineForClassFields": true,
+    "module": 99,
+    "skipLibCheck": true,
+    "moduleResolution": 2,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": 4,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "composite": true,
+    "types": [
+      "node"
+    ],
+    "allowSyntheticDefaultImports": true
+  }
+}

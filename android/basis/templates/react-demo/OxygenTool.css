@@ -1,0 +1,45 @@
+:root {
+    font-family: var(--fontFamily);
+    color: var(--colorText);
+    background-color: var(--colorBgContainer);
+}
+
+#root {
+    max-width: calc(var(--screenXL) * 1px);
+    padding: calc(var(--paddingXXS) * 1px);
+    margin: 0 auto;
+    text-align: center;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+    place-items: center;
+}
+
+h1 {
+    font-size: calc(var(--fontSizeHeading1) * 1px);
+}
+
+button {
+    padding: calc(var(--paddingXS) * 1px) calc(var(--paddingMD) * 1px);
+    color: var(--colorText);
+    background-color: var(--colorFillContent);
+    border: 1px solid transparent;
+    border-radius: calc(var(--borderRadiusLG) * 1px);
+    font-family: inherit;
+    font-size: calc(var(--fontSize) * 1px);
+    font-weight: var(--fontWeightStrong);
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+button:hover {
+    background-color: var(--colorFillContentHover);
+}
+
+button:focus,
+button:focus-visible {
+    outline: 4px auto var(--controlOutline);
+}

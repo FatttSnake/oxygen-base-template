@@ -1,0 +1,44 @@
+.oxygen-content {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    background-color: var(--colorBgContainer);
+}
+
+.oxygen-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.oxygen-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 8px;
+}
+
+.oxygen-input {
+    flex: 1;
+}
+
+.oxygen-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px 0 10px;
+}
+
+@media screen and (max-aspect-ratio: 1 / 1) {
+    .oxygen-content {
+        flex-direction: column;
+    }
+
+    .oxygen-convert-icon {
+        transform: rotateZ(90deg);
+    }
+}
