@@ -1,4 +1,4 @@
-import { initOxygenTool } from './OxygenTool.tsx'
+import { initOxygenTool } from './OxygenTool'
 
 (initOxygenTool ?? (
     (id: string) => {
