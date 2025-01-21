@@ -3,11 +3,11 @@ const converter: Converter = {
 
     secondTitle: '输出/输入(Output/Intput)',
 
-    forwardConvert: (input: string) => {
+    forwardConvert: async (input: string) => {
         return input
     },
 
-    backwardConvert: (input: string) => {
+    backwardConvert: async (input: string) => {
         return input
     }
 }
