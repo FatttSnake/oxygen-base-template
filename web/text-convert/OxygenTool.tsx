@@ -16,7 +16,9 @@ import './OxygenTool_oxygen_base_style.css'
 
 const defaultConverter: Converter = {
   firstTitle: 'Untitled',
+  firstSaveFileSuffix: 'txt',
   secondTitle: 'Untitled',
+  secondSaveFileSuffix: 'txt',
   forwardConvert: async (input) => input,
   backwardConvert: async (input) => input
 }
@@ -44,14 +46,14 @@ const OxygenTool = () => {
     }
   })
 
-  const { firstTitle, firstLanguage, secondTitle, secondLanguage, forwardConvert, firstFormat, backwardConvert, secondFormat } = converter
+  const { firstTitle, firstLanguage, firstSaveFileSuffix, secondTitle, secondLanguage, secondSaveFileSuffix, forwardConvert, firstFormat, backwardConvert, secondFormat } = converter
 
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const setFuncRef = useRef<(newText: string, changeEditor: boolean) => void>()
+  const setFuncRef = useRef<(newText: string, changeEditor: boolean) => void>(null)
   const firstEditorRef = useRef<HTMLDivElement>(null)
-  const firstEditorViewRef = useRef<EditorView>()
+  const firstEditorViewRef = useRef<EditorView>(null)
   const secondEditorRef = useRef<HTMLDivElement>(null)
-  const secondEditorViewRef = useRef<EditorView>()
+  const secondEditorViewRef = useRef<EditorView>(null)
 
   const [firstText, setFirstText] = useState('')
   const [secondText, setSecondText] = useState('')
@@ -298,9 +300,9 @@ const OxygenTool = () => {
     reader.readAsText(file)
   }
 
-  const downloadFile = (text: string) => {
+  const downloadFile = (text: string, suffix: string) => {
     return () => {
-      saveAs(new File([text], `${Date.now()}.txt`, { type: 'text/plain;charset=utf-8' }))
+      saveAs(new File([text], `${Date.now()}.${suffix}`, { type: 'text/plain;charset=utf-8' }))
     }
   }
 
@@ -534,7 +536,7 @@ const OxygenTool = () => {
                       <path d="M440-320v-326L336-542l-56-58 200-200 200 200-56 58-104-104v326h-80ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
                     </SvgIcon>
                   </Button>
-                  <Button onClick={downloadFile(firstText)}>
+                  <Button onClick={downloadFile(firstText, firstSaveFileSuffix)}>
                     <SvgIcon viewBox={'0 -960 960 960'} fontSize={'small'}>
                       <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
                     </SvgIcon>
@@ -658,7 +660,7 @@ const OxygenTool = () => {
                       <path d="M440-320v-326L336-542l-56-58 200-200 200 200-56 58-104-104v326h-80ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
                     </SvgIcon>
                   </Button>
-                  <Button onClick={downloadFile(secondText)}>
+                  <Button onClick={downloadFile(secondText, secondSaveFileSuffix)}>
                     <SvgIcon viewBox={'0 -960 960 960'} fontSize={'small'}>
                       <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
                     </SvgIcon>
