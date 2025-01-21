@@ -23,6 +23,8 @@ interface Converter {
     firstLanguage?: Language
     secondTitle: string
     secondLanguage?: Language
-    forwardConvert?: (input: string) => string
-    backwardConvert?: (input: string) => string
+    forwardConvert?: (input: string) => Promise<string>
+    firstFormat?: (input: string, indent: number) => Promise<string>
+    backwardConvert?: (input: string) => Promise<string>
+    secondFormat?: (input: string, indent: number) => Promise<string>
 }
