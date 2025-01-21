@@ -21,8 +21,10 @@ type Language = 'C' | 'C++' | 'CQL' | 'CSS' | 'Go' | 'HTML' | 'Java' | 'JavaScri
 interface Converter {
     firstTitle: string
     firstLanguage?: Language
+    firstSaveFileSuffix: string
     secondTitle: string
     secondLanguage?: Language
+    secondSaveFileSuffix: string
     forwardConvert?: (input: string) => Promise<string>
     firstFormat?: (input: string, indent: number) => Promise<string>
     backwardConvert?: (input: string) => Promise<string>
