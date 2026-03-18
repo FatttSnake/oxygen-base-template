@@ -12,7 +12,7 @@ import { languages } from '@codemirror/language-data'
 import { materialLight, defaultSettingsMaterialLight, materialDark, defaultSettingsMaterialDark } from '@uiw/codemirror-theme-material'
 
 import './base_oxygen_base_style.css'
-import './OxygenTool_oxygen_base_style.css'
+import './OxygenApp_oxygen_base_style.css'
 
 const defaultConverter: Converter = {
   firstTitle: 'Untitled',
@@ -33,7 +33,7 @@ const secondIndentCompartment = new Compartment
 const secondLineWrappingCompartment = new Compartment
 const secondUpdateExtCompartment = new Compartment
 
-const OxygenTool = () => {
+const OxygenApp = () => {
   const theme = createTheme({
     palette: {
       primary: {
@@ -758,8 +758,8 @@ const OxygenTool = () => {
   )
 }
 
-export const initOxygenTool = (id: string) => {
+export const initOxygenApp = (id: string) => {
   createRoot(document.getElementById(id)!).render(
-      createElement(OxygenTool)
+      createElement(OxygenApp)
   )
 }
