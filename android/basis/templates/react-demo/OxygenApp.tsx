@@ -1,9 +1,9 @@
 import { createElement, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import './OxygenTool.css'
+import './OxygenApp.css'
 
-const OxygenTool = () => {
+const OxygenApp = () => {
     const [count, setCount] = useState(0)
 
     return (
@@ -16,8 +16,8 @@ const OxygenTool = () => {
     )
 }
 
-window.initOxygenTool = (id: string) => {
+window.initOxygenApp = (id: string) => {
     createRoot(document.getElementById(id)!).render(
-        createElement(OxygenTool)
+        createElement(OxygenApp)
     )
 }

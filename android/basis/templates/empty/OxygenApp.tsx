@@ -1,12 +1,12 @@
 import { createElement } from 'react'
 import { createRoot } from 'react-dom/client'
 
-const OxygenTool = () => {
+const OxygenApp = () => {
     return <></>
 }
 
-window.initOxygenTool = (id: string) => {
+window.initOxygenApp = (id: string) => {
     createRoot(document.getElementById(id)!).render(
-        createElement(OxygenTool)
+        createElement(OxygenApp)
     )
 }
