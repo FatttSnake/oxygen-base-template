@@ -11,8 +11,8 @@ import { LanguageSupport, indentUnit } from '@codemirror/language'
 import { languages } from '@codemirror/language-data'
 import { materialLight, defaultSettingsMaterialLight, materialDark, defaultSettingsMaterialDark } from '@uiw/codemirror-theme-material'
 
-import './base_oxygen_base_style.css'
-import './OxygenApp_oxygen_base_style.css'
+import './css/base_oxygen_base_style.css'
+import './css/OxygenApp_oxygen_base_style.css'
 
 const defaultConverter: Converter = {
   firstTitle: 'Untitled',

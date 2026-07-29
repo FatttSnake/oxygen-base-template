@@ -1,4 +1,4 @@
-import { initOxygenApp } from './OxygenApp'
+import { initOxygenApp } from './OxygenApp.tsx'
 
 (initOxygenApp ?? (
     (id: string) => {
