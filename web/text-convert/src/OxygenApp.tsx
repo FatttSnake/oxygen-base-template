@@ -6,13 +6,13 @@ import saveAs from 'file-saver'
 import { EditorView, basicSetup } from 'codemirror'
 import { EditorState, Compartment } from '@codemirror/state'
 import { ViewUpdate, keymap } from '@codemirror/view'
-import { indentMore } from "@codemirror/commands";
+import { indentMore } from "@codemirror/commands"
 import { LanguageSupport, indentUnit } from '@codemirror/language'
 import { languages } from '@codemirror/language-data'
 import { materialLight, defaultSettingsMaterialLight, materialDark, defaultSettingsMaterialDark } from '@uiw/codemirror-theme-material'
 
-import './base_oxygen_base_style.css'
-import './OxygenApp_oxygen_base_style.css'
+import './css/base_oxygen_base_style.css'
+import './css/OxygenApp_oxygen_base_style.css'
 
 const defaultConverter: Converter = {
   firstTitle: 'Untitled',
@@ -49,11 +49,11 @@ const OxygenApp = () => {
   const { firstTitle, firstLanguage, firstSaveFileSuffix, secondTitle, secondLanguage, secondSaveFileSuffix, forwardConvert, firstFormat, backwardConvert, secondFormat } = converter
 
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const setFuncRef = useRef<(newText: string, changeEditor: boolean) => void>(null)
+  const setFuncRef = useRef<(newText: string, changeEditor: boolean) => void>()
   const firstEditorRef = useRef<HTMLDivElement>(null)
-  const firstEditorViewRef = useRef<EditorView>(null)
+  const firstEditorViewRef = useRef<EditorView>()
   const secondEditorRef = useRef<HTMLDivElement>(null)
-  const secondEditorViewRef = useRef<EditorView>(null)
+  const secondEditorViewRef = useRef<EditorView>()
 
   const [firstText, setFirstText] = useState('')
   const [secondText, setSecondText] = useState('')
