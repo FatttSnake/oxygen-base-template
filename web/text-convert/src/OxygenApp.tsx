@@ -2,16 +2,17 @@ import { createElement, ChangeEvent, useRef, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Button, ButtonGroup, SvgIcon, Checkbox, Tooltip } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import saveAs from 'file-saver'
 import { EditorView, basicSetup } from 'codemirror'
 import { EditorState, Compartment } from '@codemirror/state'
 import { ViewUpdate, keymap } from '@codemirror/view'
-import { indentMore } from "@codemirror/commands";
+import { indentMore } from "@codemirror/commands"
 import { LanguageSupport, indentUnit } from '@codemirror/language'
 import { languages } from '@codemirror/language-data'
 import { materialLight, defaultSettingsMaterialLight, materialDark, defaultSettingsMaterialDark } from '@uiw/codemirror-theme-material'
 
-import './base_oxygen_base_style.css'
-import './OxygenApp_oxygen_base_style.css'
+import './css/base_oxygen_base_style.css'
+import './css/OxygenApp_oxygen_base_style.css'
 
 const defaultConverter: Converter = {
   firstTitle: 'Untitled',
@@ -48,11 +49,11 @@ const OxygenApp = () => {
   const { firstTitle, firstLanguage, firstSaveFileSuffix, secondTitle, secondLanguage, secondSaveFileSuffix, forwardConvert, firstFormat, backwardConvert, secondFormat } = converter
 
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const setFuncRef = useRef<(newText: string, changeEditor: boolean) => void>(null)
+  const setFuncRef = useRef<(newText: string, changeEditor: boolean) => void>()
   const firstEditorRef = useRef<HTMLDivElement>(null)
-  const firstEditorViewRef = useRef<EditorView>(null)
+  const firstEditorViewRef = useRef<EditorView>()
   const secondEditorRef = useRef<HTMLDivElement>(null)
-  const secondEditorViewRef = useRef<EditorView>(null)
+  const secondEditorViewRef = useRef<EditorView>()
 
   const [firstText, setFirstText] = useState('')
   const [secondText, setSecondText] = useState('')
@@ -259,27 +260,17 @@ const OxygenApp = () => {
 
   const copyToClipboard = (text: string) => {
     return () => {
-      if (!NativeApi.copyToClipboard) {
-        alert('操作失败，请更新 App 后重试。The operation failed, please update the app and try again.')
-        return
-      }
-
-      if (NativeApi.copyToClipboard(text)) {
+      navigator.clipboard.writeText(text).then(() => {
         alert('已复制到剪切板。Copied to clipboard.')
-      } else {
-        alert('复制失败。Copy failed.')
-      }
+      })
     }
   }
 
   const pasteFromClipboard = (setFunc: (newText: string, changeEditor: boolean) => void) => {
     return () => {
-      if (!NativeApi.readClipboard) {
-        alert('操作失败，请更新 App 后重试。The operation failed, please update the app and try again.')
-        return
-      }
-
-      setFunc(NativeApi.readClipboard(), true)
+      navigator.clipboard.readText().then((text) => {
+        setFunc(text, true)
+      })
     }
   }
 
@@ -311,23 +302,7 @@ const OxygenApp = () => {
 
   const downloadFile = (text: string, suffix: string) => {
     return () => {
-      if (!NativeApi.saveToDownloads) {
-        alert('操作失败，请更新 App 后重试。The operation failed, please update the app and try again.')
-        return
-      }
-
-      if (NativeApi.saveToDownloads(
-          btoa(
-              String.fromCharCode(
-                  ...new TextEncoder().encode(text)
-              )
-          ),
-          `${Date.now()}.${suffix}`
-      )) {
-        alert("已保存到下载目录。Saved to download directory.")
-      } else {
-        alert("保存失败，请检查权限设置。Saving failed, please check permission settings.")
-      }
+      saveAs(new File([text], `${Date.now()}.${suffix}`, { type: 'text/plain;charset=utf-8' }))
     }
   }
 
