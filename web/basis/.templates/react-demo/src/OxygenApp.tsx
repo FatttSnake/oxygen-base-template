@@ -1,7 +1,7 @@
 import { createElement, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import './OxygenApp.css'
+import './assets/css/OxygenApp.css'
 
 const OxygenApp = () => {
     const [count, setCount] = useState(0)
